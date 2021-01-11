@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.17
+# v0.12.7
 
 using Markdown
 using InteractiveUtils
@@ -353,7 +353,7 @@ md"### Visualisierung der Verschiebung. Farbe entspricht der *vertikalen* Versch
 # ╔═╡ 31a63ac0-503b-11eb-27c9-f1a0378daa8b
 begin
 	fig_u, ax_u, sp_u = JuAFEM.warp_by_vector(dh,u; colormap=:inferno, process=x->x[2])
-	WGLMakie.Colorbar(fig_u; limits=(0,maximum(u)),colormap=:inferno)
+	fig_u[1,2] = WGLMakie.Colorbar(fig_u; limits=(0,maximum(u)),colormap=:inferno, width=20)
 	fig_u
 end
 
@@ -387,7 +387,7 @@ begin
 	plot_σ = [[σ_i[1],σ_i[4]] for σ_i in σ_nodes]
 	plot_σ = vcat(plot_σ...)
 	fig_σ11, ax_σ11, sp_σ11 = WGLMakie.mesh(dh,plot_σ, process=x->x[1],colormap=:inferno)
-	WGLMakie.Colorbar(fig_σ11; limits=(minimum(plot_σ[1:2:end]),maximum(plot_σ[1:2:end])),colormap=:inferno)
+	fig_σ11[1,2] = WGLMakie.Colorbar(fig_σ11; limits=(minimum(plot_σ[1:2:end]),maximum(plot_σ[1:2:end])),colormap=:inferno, width=20)
 	fig_σ11
 end
 
@@ -397,7 +397,7 @@ md" ### σ₂₂"
 # ╔═╡ 3e3ee84c-50ca-11eb-3185-1d1d0257c2b5
 begin
 	fig_σ22, ax_σ22, sp_σ22 = WGLMakie.mesh(dh, plot_σ,process=x->x[2],colormap=:inferno)
-	WGLMakie.Colorbar(fig_σ22; limits=(minimum(plot_σ[2:2:end-1]),maximum(plot_σ[2:2:end-1])),colormap=:inferno)
+	fig_σ22[1,2] = WGLMakie.Colorbar(fig_σ22; limits=(minimum(plot_σ[2:2:end-1]),maximum(plot_σ[2:2:end-1])),colormap=:inferno, width=20)
 	fig_σ22
 end
 
@@ -409,7 +409,7 @@ begin
 	plot_σ12 = [[σ_i[2],0] for σ_i in σ_nodes]
 	plot_σ12 = vcat(plot_σ12...)
 	fig_σ12, ax_σ12, sp_σ12 = WGLMakie.mesh(dh,plot_σ12, process=x->x[1],colormap=:inferno,scale_plot=false)
-	WGLMakie.Colorbar(fig_σ12; limits=(minimum(plot_σ12),maximum(plot_σ12)),colormap=:inferno)
+	fig_σ12[1,2] = WGLMakie.Colorbar(fig_σ12; limits=(minimum(plot_σ12[1:2:end]),maximum(plot_σ12[1:2:end])),colormap=:inferno, width=20)
 	fig_σ12
 end
 
