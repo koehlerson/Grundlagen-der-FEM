@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.17
+# v0.12.7
 
 using Markdown
 using InteractiveUtils
@@ -252,8 +252,8 @@ begin
 datatable=md"""
 | Data       |      | values    |
 | :------------- | :----------: | -----------: |
-|  E |    | 10000 MPa    |
-|  \nu |    | 0.3     |
+|  E |    | 210 GPa    |
+|  ν |    | 0.3     |
 | node no.1:    | [x y] | [0.0 0.0] mm |
 | node no.2:    | [x y] | [1.0 0.3] mm |
 | node no.3:    | [x y] | [0.5 0.8] mm |
