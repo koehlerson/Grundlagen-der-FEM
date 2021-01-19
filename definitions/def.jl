@@ -2,7 +2,7 @@ using PlutoUI
 using StringDistances
 using Luxor
 
-hint(text) = Markdown.MD(Markdown.Admonition("hint", "Hilfe", [text]))
+hint(text;blur=true) = blur ? Markdown.MD(Markdown.Admonition("hint", "Hilfe", [text])) : Markdown.MD(Markdown.Admonition("note", "Hilfe", [text])) 
 warning(text) = Markdown.MD(Markdown.Admonition("warning", "Warnung", [text]))
 yays = [md"Sehr gut! 🐣", md"Yay ❤", md"Genau so! 🎉", md"Gut gemacht! 🐦", md"Weiter so! 🐤", md"Klasse! 🐧", md"Korrekt! 🐖", md"Sehr schön! 🐿"]
 correct(text=rand(yays)) = Markdown.MD(Markdown.Admonition("correct", "Richtig!", [text]))

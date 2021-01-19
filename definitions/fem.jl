@@ -1,6 +1,6 @@
 import JuAFEM
 
-hint(text) = Markdown.MD(Markdown.Admonition("hint", "Hilfe", [text]))
+hint(text;blur=true) = blur ? Markdown.MD(Markdown.Admonition("hint", "Hilfe", [text])) : Markdown.MD(Markdown.Admonition("note", "Hilfe", [text])) 
 warning(text) = Markdown.MD(Markdown.Admonition("warning", "Warnung", [text]))
 yays = [md"Sehr gut! 🐣", md"Yay ❤", md"Genau so! 🎉", md"Gut gemacht! 🐦", md"Weiter so! 🐤", md"Klasse! 🐧", md"Korrekt! 🐖", md"Sehr schön! 🐿"]
 correct(text=rand(yays)) = Markdown.MD(Markdown.Admonition("correct", "Richtig!", [text]))
@@ -8,7 +8,7 @@ still_missing(text=md"Ersetzen sie `missing` mit ihrer Antwort") = Markdown.MD(M
 keep_working(text=md"Noch nicht die richtige Antwort, noch ein Versuch! 🦥") = Markdown.MD(Markdown.Admonition("danger", "Falsch", [text]))
 solution(text; blur=true) = blur ? Markdown.MD(Markdown.Admonition("hint", "Lösung", [text])) : Markdown.MD(Markdown.Admonition("note", "Lösung", [text]))
 
-function find_cell_containing_point(grid, point)
+function find_cell_containing_point(grid::Grid{dim,C,T}, point) where {M,dim,C<:JuAFEM.AbstractCell{2,M,3},T}
     interpolation = JuAFEM.default_interpolation(eltype(grid.cells))
     for cell in 1:length(grid.cells)
         cell_coords  = getcoordinates(grid, cell)
@@ -19,6 +19,35 @@ function find_cell_containing_point(grid, point)
         end
     end
     error("did not find cell containing point")
+end
+
+function find_cell_containing_point(grid::Grid{dim,C,T}, point) where {M,dim,C<:JuAFEM.AbstractCell{2,M,4},T}
+    interpolation = JuAFEM.default_interpolation(eltype(grid.cells))
+    for cell in 1:length(grid.cells)
+        cell_coords  = getcoordinates(grid, cell)
+        # [1,2,3] is the indices for the vertices of a quadratic triangle
+        coords_vertices = cell_coords[[1,2,3,4]]
+        if is_point_inside_quad(point, coords_vertices)
+            return cell
+        end
+    end
+    error("did not find cell containing point")
+end
+
+
+function is_point_inside_quad(point, quad)
+    x = point[1]
+    y = point[2]
+    x1 = quad[1][1]
+    x2 = quad[3][1]
+    y1 = quad[1][2]
+    y2 = quad[3][2]
+    if (x > x1 && x < x2 && 
+        y > y1 && y < y2)
+        return true
+    else
+        return false
+    end
 end
 
 function is_point_inside_triangle(point, triangle)
@@ -78,7 +107,12 @@ function measure_function(point,u,dh,ansatz)
     cellid = find_cell_containing_point(dh.grid,point)
     cellcoords = getcoordinates(dh.grid,cellid)
     localcoords = find_local_coordinate(ansatz, cellcoords, point)
-    qr = QuadratureRule{2, RefTetrahedron, Float64}([1], [localcoords])
+    C = getcelltype(dh.grid)
+    if C <: Cell{2,3,3} || C <: Cell{2,6,3}
+        qr = QuadratureRule{2, RefTetrahedron, Float64}([1], [localcoords])
+    elseif C <: Quadrilateral
+        qr = QuadratureRule{2, RefCube, Float64}([1], [localcoords])
+    end
     fe_values = CellVectorValues(qr, ansatz)
     reinit!(fe_values, cellcoords)
     return function_value(fe_values, 1, u[celldofs(dh,cellid)])
