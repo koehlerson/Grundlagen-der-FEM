@@ -110,7 +110,7 @@ hint(
 md"""
 Benutzen Sie Lagrange-Polynome für beide Koordinaten
 	
-$$l_k^p(\xi, \eta) = l_k^p(\xi)\ l_k^p(\eta) = 
+$$l_k^p(\xi, \eta) : = l^k_k(\xi,\eta) = l_k^k(\xi)\ l_k^k(\eta) = 
 	\prod_{i=0, i\neq k}^p \dfrac{(\xi-\xi_i)}{(\xi_k-\xi_i)}\prod_{i=0, i\neq k}^p \dfrac{(\eta-\eta_i)}{(\eta_k-\eta_i)}$$
 	
 Betrachten sie dazu die Linien "separat" als würden sie jeweils eine 1D Funktion aufstellen und anschließend miteinander multiplizieren
