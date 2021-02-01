@@ -88,9 +88,6 @@ end
 	nothing
 end
 
-# ╔═╡ 8aa3fb16-622a-11eb-2938-ef508e6d76f2
-include("../../definitions/plotting.jl")
-
 # ╔═╡ 30471402-5675-11eb-176c-5330058c812b
 include("../../definitions/fem.jl")
 
@@ -327,7 +324,6 @@ end
 
 # ╔═╡ Cell order:
 # ╠═18227574-5675-11eb-1296-4bce242be471
-# ╟─8aa3fb16-622a-11eb-2938-ef508e6d76f2
 # ╟─30471402-5675-11eb-176c-5330058c812b
 # ╟─34d635de-5675-11eb-334c-097e04f6abe7
 # ╟─3dfad08e-5675-11eb-2f13-591a06338472
