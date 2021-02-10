@@ -161,7 +161,7 @@ $$\implies \mathbf{p}_e = \int_{-1}^1 \int_{-1}^1 \mathbf{N}_e^T(\xi, \eta) \mat
 
 **3) Numerische Integration**
 
-- $\mathbf{k}_e = \sum_{i=1}^{n_{GP}}\mathbf{B}_e^T(\xi\_i, \eta\_i) \mathbb{C} \mathbf{B}_e(\xi_i, \eta_i) \det \mathbf{J}(\xi_i,\eta_i) \ w_{\xi_i} w_{\eta_i}$
+- $\mathbf{k}_e = \sum_{i=1}^{n_{GP}}\mathbf{B}_e^T(\xi_i, \eta_i) \mathbb{C} \mathbf{B}_e(\xi_i, \eta_i) \det \mathbf{J}(\xi_i,\eta_i) \ w_{\xi_i} w_{\eta_i}$
 
 - analog $\mathbf{p}_e$
 """
@@ -222,7 +222,7 @@ md"""
 ### Lösung 2b
 
 $\mathbf{D} = \begin{bmatrix}
-D_1 \\
+D_2 \\
 D_3 \\
 D_4 \\
 D_7 
