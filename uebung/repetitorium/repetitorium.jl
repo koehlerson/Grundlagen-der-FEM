@@ -150,14 +150,14 @@ $\mathbf{B}_e := \mathbf{B}_e(\xi,\eta)$ (bei linearen Ansatzfunktionen ist $\ma
 
 Gleiche Ansatzfunktionen für $\mathbf{x}^h$ und $\mathbf{u}^h$. Geometrische Ansatzfunktionen werden hier zur Unterscheidung $\mathbf{M}$ genannt, auch wenn sie die gleichen wie $\mathbf{N}$ sind.
 
-$$\mathbf{x}^h = \mathbf{N}_e \mathbf{x}_e$$
+$$\mathbf{x}^h = \mathbf{M}_e \mathbf{x}_e = \mathbf{N}_e \mathbf{x}_e$$
 $$\mathbf{u}^h = \mathbf{N}_e \mathbf{d}_e$$
 
 - Jacobimatrix $\mathbf{J} = \dfrac{\partial \mathbf{x}^h}{\partial \mathbf{\xi}}$
 - Jacobi Determinante $\det \mathbf{J}$
 
 $$\implies \mathbf{k}_e = \int_{-1}^1 \int_{-1}^1 \mathbf{B}_e^T(\xi, \eta) \mathbb{C} \mathbf{B}_e(\xi, \eta) \det \mathbf{J}(\xi,\eta) \ \text{d}\xi\text{d}\eta$$
-$$\implies \mathbf{p}_e = \int_{-1}^1 \int_{-1}^1 \mathbf{N}_e^T(\xi, \eta) \mathbf{b} \det \mathbf{J}(\xi,\eta) \ \text{d}\xi\text{d}\eta$$
+$$\implies \mathbf{p}_e = \int_{-1}^1 \int_{-1}^1 \mathbf{N}_e^T(\xi, \eta) \mathbf{b} \det \mathbf{J}(\xi,\eta) \ \text{d}\xi\text{d}\eta + \text{Neumann Bedingungen (Randlasten)}$$
 
 **3) Numerische Integration**
 
